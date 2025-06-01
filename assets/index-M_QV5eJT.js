@@ -561,7 +561,7 @@ function Nt(e, t) {
 }
 async function Be(e) {
   if (I !== void 0) return I;
-  typeof e < "u" && (Object.getPrototypeOf(e) === Object.prototype ? { module_or_path: e } = e : console.warn("using deprecated parameters for the initialization function; pass a single object instead")), typeof e > "u" && (e = new URL("./assets/mayalculator_core_logic_bg-DqmpGp3H.wasm", import.meta.url));
+  typeof e < "u" && (Object.getPrototypeOf(e) === Object.prototype ? { module_or_path: e } = e : console.warn("using deprecated parameters for the initialization function; pass a single object instead")), typeof e > "u" && (e = new URL("https://chaptergreen.github.io/mayalculator-mini.github.io/assets/mayalculator_core_logic_bg-DqmpGp3H.wasm", import.meta.url));
   const t = Et();
   (typeof e == "string" || typeof Request == "function" && e instanceof Request || typeof URL == "function" && e instanceof URL) && (e = fetch(e));
   const { instance: n, module: r } = await Tt(await e, t);
