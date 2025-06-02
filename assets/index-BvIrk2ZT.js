@@ -17,12 +17,12 @@
   }
 })();
 const st = false, ot = (e, t) => e === t, it = Symbol("solid-track"), we = { equals: ot };
-let He = Xe;
+let He = Je;
 const j = 1, pe = 2, qe = { owned: null, cleanups: null, context: null, owner: null }, $e = {};
 var k = null;
 let Te = null, at = null, C = null, F = null, W = null, xe = 0;
 function de(e, t) {
-  const n = C, r = k, s = e.length === 0, o = t === void 0 ? r : t, a = s ? qe : { owned: null, cleanups: null, context: o ? o.context : null, owner: o }, i = s ? e : () => e(() => J(() => le(a)));
+  const n = C, r = k, s = e.length === 0, o = t === void 0 ? r : t, a = s ? qe : { owned: null, cleanups: null, context: o ? o.context : null, owner: o }, i = s ? e : () => e(() => X(() => le(a)));
   k = a, C = null;
   try {
     return Q(i, true);
@@ -32,8 +32,8 @@ function de(e, t) {
 }
 function K(e, t) {
   t = t ? Object.assign({}, we, t) : we;
-  const n = { value: e, observers: null, observerSlots: null, comparator: t.equals || void 0 }, r = (s) => (typeof s == "function" && (s = s(n.value)), Ze(n, s));
-  return [Ge.bind(n), r];
+  const n = { value: e, observers: null, observerSlots: null, comparator: t.equals || void 0 }, r = (s) => (typeof s == "function" && (s = s(n.value)), Ge(n, s));
+  return [Ze.bind(n), r];
 }
 function lt(e, t, n) {
   const r = Ae(e, t, true, j);
@@ -51,7 +51,7 @@ function ct(e, t, n) {
 function te(e, t, n) {
   n = n ? Object.assign({}, we, n) : we;
   const r = Ae(e, t, true, 0);
-  return r.observers = null, r.observerSlots = null, r.comparator = n.equals || void 0, ne(r), Ge.bind(r);
+  return r.observers = null, r.observerSlots = null, r.comparator = n.equals || void 0, ne(r), Ze.bind(r);
 }
 function ut(e) {
   return e && typeof e == "object" && "then" in e;
@@ -81,10 +81,10 @@ function ft(e, t, n) {
     c = false;
     const w = y ? y() : r;
     if (w == null || w === false) {
-      f(a, J(p));
+      f(a, X(p));
       return;
     }
-    const S = i !== $e ? i : J(() => s(w, { value: p(), refetching: D }));
+    const S = i !== $e ? i : X(() => s(w, { value: p(), refetching: D }));
     return ut(S) ? (a = S, "value" in S ? (S.status === "success" ? f(a, S.value, void 0, w) : f(a, void 0, Ne(S.value), w), S) : (c = true, queueMicrotask(() => c = false), Q(() => {
       h(l ? "refreshing" : "pending"), E();
     }, false), S.then(($) => f(S, $, void 0, w), ($) => f(S, void 0, Ne($), w)))) : (f(a, S, void 0, w), S);
@@ -99,7 +99,7 @@ function ft(e, t, n) {
     return p();
   } } }), y ? lt(() => m(false)) : m(false), [A, { refetch: m, mutate: _ }];
 }
-function J(e) {
+function X(e) {
   if (C === null) return e();
   const t = C;
   C = null;
@@ -112,9 +112,9 @@ function J(e) {
 function ze(e) {
   return k === null || (k.cleanups === null ? k.cleanups = [e] : k.cleanups.push(e)), e;
 }
-const [Jt, Qt] = K(false);
+const [Xt, Qt] = K(false);
 let dt;
-function Ge() {
+function Ze() {
   if (this.sources && this.state) if (this.state === j) ne(this);
   else {
     const e = F;
@@ -126,12 +126,12 @@ function Ge() {
   }
   return this.value;
 }
-function Ze(e, t, n) {
+function Ge(e, t, n) {
   let r = e.value;
   return (!e.comparator || !e.comparator(r, t)) && (e.value = t, e.observers && e.observers.length && Q(() => {
     for (let s = 0; s < e.observers.length; s += 1) {
       const o = e.observers[s], a = Te && Te.running;
-      a && Te.disposed.has(o), (a ? !o.tState : !o.state) && (o.pure ? F.push(o) : W.push(o), o.observers && Je(o)), a || (o.state = j);
+      a && Te.disposed.has(o), (a ? !o.tState : !o.state) && (o.pure ? F.push(o) : W.push(o), o.observers && Xe(o)), a || (o.state = j);
     }
     if (F.length > 1e6) throw F = [], new Error();
   }, false)), t;
@@ -153,7 +153,7 @@ function ht(e, t, n) {
   } finally {
     C = o, k = s;
   }
-  (!e.updatedAt || e.updatedAt <= n) && (e.updatedAt != null && "observers" in e ? Ze(e, r) : e.value = r, e.updatedAt = n);
+  (!e.updatedAt || e.updatedAt <= n) && (e.updatedAt != null && "observers" in e ? Ge(e, r) : e.value = r, e.updatedAt = n);
 }
 function Ae(e, t, n, r = j, s) {
   const o = { fn: e, state: r, updatedAt: null, owned: null, sources: null, sourceSlots: null, cleanups: null, value: t, owner: k, context: k ? k.context : null, pure: n };
@@ -162,7 +162,7 @@ function Ae(e, t, n, r = j, s) {
 function ve(e) {
   if (e.state === 0) return;
   if (e.state === pe) return _e(e);
-  if (e.suspense && J(e.suspense.inFallback)) return e.suspense.effects.push(e);
+  if (e.suspense && X(e.suspense.inFallback)) return e.suspense.effects.push(e);
   const t = [e];
   for (; (e = e.owner) && (!e.updatedAt || e.updatedAt < xe); ) e.state && t.push(e);
   for (let n = t.length - 1; n >= 0; n--) if (e = t[n], e.state === j) ne(e);
@@ -183,11 +183,11 @@ function Q(e, t) {
   }
 }
 function yt(e) {
-  if (F && (Xe(F), F = null), e) return;
+  if (F && (Je(F), F = null), e) return;
   const t = W;
   W = null, t.length && Q(() => He(t), false);
 }
-function Xe(e) {
+function Je(e) {
   for (let t = 0; t < e.length; t++) ve(e[t]);
 }
 function bt(e) {
@@ -208,10 +208,10 @@ function _e(e, t) {
     }
   }
 }
-function Je(e) {
+function Xe(e) {
   for (let t = 0; t < e.observers.length; t += 1) {
     const n = e.observers[t];
-    n.state || (n.state = pe, n.pure ? F.push(n) : W.push(n), n.observers && Je(n));
+    n.state || (n.state = pe, n.pure ? F.push(n) : W.push(n), n.observers && Xe(n));
   }
 }
 function le(e) {
@@ -251,7 +251,7 @@ function mt(e, t, n = {}) {
   let r = [], s = [], o = [], a = 0, i = t.length > 1 ? [] : null;
   return ze(() => Oe(o)), () => {
     let c = e() || [], l = c.length, y, u;
-    return c[it], J(() => {
+    return c[it], X(() => {
       let _, T, g, v, E, d, h, f, b;
       if (l === 0) a !== 0 && (Oe(o), o = [], r = [], s = [], a = 0, i && (i = [])), n.fallback && (r = [gt], s[0] = de((A) => (o[0] = A, n.fallback())), a = 1);
       else if (a === 0) {
@@ -276,8 +276,8 @@ function mt(e, t, n = {}) {
     }
   };
 }
-function R(e, t) {
-  return J(() => e(t || {}));
+function P(e, t) {
+  return X(() => e(t || {}));
 }
 function he(e) {
   const t = "fallback" in e && { fallback: () => e.fallback };
@@ -345,7 +345,7 @@ function x(e, t) {
   t == null ? e.removeAttribute("class") : e.className = t;
 }
 function ye(e, t, n) {
-  return J(() => e(t, n));
+  return X(() => e(t, n));
 }
 function M(e, t, n, r) {
   if (n !== void 0 && !r && (r = []), typeof t != "function") return De(e, t, r, n);
@@ -503,18 +503,18 @@ function xt(e, t, n) {
 function At(e) {
   return e == null;
 }
-let Z = null;
-function Re() {
-  return (Z === null || Z.buffer.detached === true || Z.buffer.detached === void 0 && Z.buffer !== I.memory.buffer) && (Z = new DataView(I.memory.buffer)), Z;
+let G = null;
+function Pe() {
+  return (G === null || G.buffer.detached === true || G.buffer.detached === void 0 && G.buffer !== I.memory.buffer) && (G = new DataView(I.memory.buffer)), G;
 }
-function Pe(e) {
+function Re(e) {
   const t = I.__wbindgen_export_2.get(e);
   return I.__externref_table_dealloc(e), t;
 }
 function $t(e) {
   const t = I.get_mayan_calendar(e);
-  if (t[2]) throw Pe(t[1]);
-  return Pe(t[0]);
+  if (t[2]) throw Re(t[1]);
+  return Re(t[0]);
 }
 async function Tt(e, t) {
   if (typeof Response == "function" && e instanceof Response) {
@@ -549,7 +549,7 @@ function Et() {
   }, e.wbg.__wbindgen_string_get = function(t, n) {
     const r = n, s = typeof r == "string" ? r : void 0;
     var o = At(s) ? 0 : xt(s, I.__wbindgen_malloc, I.__wbindgen_realloc), a = Le;
-    Re().setInt32(t + 4 * 1, a, true), Re().setInt32(t + 4 * 0, o, true);
+    Pe().setInt32(t + 4 * 1, a, true), Pe().setInt32(t + 4 * 0, o, true);
   }, e.wbg.__wbindgen_string_new = function(t, n) {
     return Ee(t, n);
   }, e.wbg.__wbindgen_throw = function(t, n) {
@@ -557,11 +557,11 @@ function Et() {
   }, e;
 }
 function Nt(e, t) {
-  return I = e.exports, Be.__wbindgen_wasm_module = t, Z = null, oe = null, I.__wbindgen_start(), I;
+  return I = e.exports, Be.__wbindgen_wasm_module = t, G = null, oe = null, I.__wbindgen_start(), I;
 }
 async function Be(e) {
   if (I !== void 0) return I;
-  typeof e < "u" && (Object.getPrototypeOf(e) === Object.prototype ? { module_or_path: e } = e : console.warn("using deprecated parameters for the initialization function; pass a single object instead")), typeof e > "u" && (e = new URL("https://chaptergreen.github.io/mayalculator-mini.github.io/assets/mayalculator_core_logic_bg-DqmpGp3H.wasm"));
+  typeof e < "u" && (Object.getPrototypeOf(e) === Object.prototype ? { module_or_path: e } = e : console.warn("using deprecated parameters for the initialization function; pass a single object instead")), typeof e > "u" && (e = new URL("https://chaptergreen.github.io/mayalculator-mini.github.io/assets/mayalculator_core_logic_bg-BJ8AuPPp.wasm"));
   const t = Et();
   (typeof e == "string" || typeof Request == "function" && e instanceof Request || typeof URL == "function" && e instanceof URL) && (e = fetch(e));
   const { instance: n, module: r } = await Tt(await e, t);
@@ -602,7 +602,7 @@ const Ve = (e) => typeof e == "boolean" ? `${e}` : e === 0 ? "0" : e, We = Ct, O
 }, ie = 9999, ae = 1, Se = new Date(0, 0, 0, 0, 0, 0, 0), Me = new Date(ie, 11, 31, 0, 0, 0, 0), ke = (() => {
   const e = new Date(Se);
   return e.setFullYear(ae, 0, 1), e;
-})(), Lt = 260, Mt = { Imix: "\u8D64\u3044\u9F8D", Ik: "\u767D\u3044\u98A8", Akbal: "\u9752\u3044\u591C", Kan: "\u9EC4\u8272\u3044\u7A2E", Chicchan: "\u8D64\u3044\u86C7", Cimi: "\u767D\u3044\u4E16\u754C\u306E\u6A4B\u6E21\u3057", Manik: "\u9752\u3044\u624B", Lamat: "\u9EC4\u8272\u3044\u661F", Muluc: "\u8D64\u3044\u6708", Oc: "\u767D\u3044\u72AC", Chuen: "\u9752\u3044\u733F", Eb: "\u9EC4\u8272\u3044\u4EBA", Ben: "\u8D64\u3044\u7A7A\u6B69\u304F\u4EBA", Ix: "\u767D\u3044\u9B54\u6CD5\u4F7F\u3044", Men: "\u9752\u3044\u9DF2", Cib: "\u9EC4\u8272\u3044\u6226\u58EB", Caban: "\u8D64\u3044\u5730\u7403", Etznab: "\u767D\u3044\u93E1", Cauac: "\u9752\u3044\u5D50", Ahau: "\u9EC4\u8272\u3044\u592A\u967D" }, kt = { Red: "\u56DE\u8EE2\u306E\u8D64\u3044\u6771\u306E\u57CE", White: "\u4EA4\u5DEE\u306E\u767D\u3044\u5317\u306E\u57CE", Blue: "\u71C3\u3048\u308B\u9752\u3044\u897F\u306E\u57CE", Yellow: "\u4E0E\u3048\u308B\u9EC4\u8272\u3044\u5357\u306E\u57CE", Green: "\u9B45\u60D1\u306E\u7DD1\u306E\u4E2D\u592E\u306E\u57CE" }, me = (e, t, n) => Math.max(t, Math.min(e, n)), X = (e, t) => new Date(e, t, 0).getDate(), Bt = (e) => {
+})(), Lt = 260, Mt = { Imix: "\u8D64\u3044\u9F8D", Ik: "\u767D\u3044\u98A8", Akbal: "\u9752\u3044\u591C", Kan: "\u9EC4\u8272\u3044\u7A2E", Chicchan: "\u8D64\u3044\u86C7", Cimi: "\u767D\u3044\u4E16\u754C\u306E\u6A4B\u6E21\u3057", Manik: "\u9752\u3044\u624B", Lamat: "\u9EC4\u8272\u3044\u661F", Muluc: "\u8D64\u3044\u6708", Oc: "\u767D\u3044\u72AC", Chuen: "\u9752\u3044\u733F", Eb: "\u9EC4\u8272\u3044\u4EBA", Ben: "\u8D64\u3044\u7A7A\u6B69\u304F\u4EBA", Ix: "\u767D\u3044\u9B54\u6CD5\u4F7F\u3044", Men: "\u9752\u3044\u9DF2", Cib: "\u9EC4\u8272\u3044\u6226\u58EB", Caban: "\u8D64\u3044\u5730\u7403", Etznab: "\u767D\u3044\u93E1", Cauac: "\u9752\u3044\u5D50", Ahau: "\u9EC4\u8272\u3044\u592A\u967D" }, kt = { Red: "\u56DE\u8EE2\u306E\u8D64\u3044\u6771\u306E\u57CE", White: "\u4EA4\u5DEE\u306E\u767D\u3044\u5317\u306E\u57CE", Blue: "\u71C3\u3048\u308B\u9752\u3044\u897F\u306E\u57CE", Yellow: "\u4E0E\u3048\u308B\u9EC4\u8272\u3044\u5357\u306E\u57CE", Green: "\u9B45\u60D1\u306E\u7DD1\u306E\u4E2D\u592E\u306E\u57CE" }, me = (e, t, n) => Math.max(t, Math.min(e, n)), J = (e, t) => new Date(e, t, 0).getDate(), Bt = (e) => {
   const t = /\d/, n = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Enter", " ", "Tab", "Backspace", "Delete", "Shift"];
   return t.test(e) || n.includes(e);
 }, H = (e) => ({ year: e.getFullYear(), month: e.getMonth() + 1, day: e.getDate() }), Ot = (e) => {
@@ -619,22 +619,22 @@ const Ve = (e) => typeof e == "boolean" ? `${e}` : e === 0 ? "0" : e, We = Ct, O
   const t = H(e), [n, r] = K(t), s = (l) => r(Ot(l));
   return [n, { birthdate: s, year: (l) => s({ ...n(), year: l }), month: (l) => s({ ...n(), month: l }), day: (l) => s({ ...n(), day: l }) }];
 }, Yt = (e, t, n = 15) => {
-  const { tzolkin_calendar: r, haab_calendar: s } = e, o = L(""), { modern: a, ancient: i } = r, { org: c, mirror: l, abs_rev: y, story: u, timeline: p } = a, _ = je(c.num), T = je(l.num), { north: g, south: v, west: E, east: d, center: h } = Object.fromEntries(Object.entries(i.tree_of_life).map(([P, V]) => {
+  const { tzolkin_calendar: r, haab_calendar: s } = e, o = L(""), { modern: a, ancient: i } = r, { org: c, mirror: l, abs_rev: y, story: u, timeline: p } = a, _ = je(c.num), T = je(l.num), { north: g, south: v, west: E, east: d, center: h } = Object.fromEntries(Object.entries(i.tree_of_life).map(([R, V]) => {
     const U = V;
-    return [P, { day: `${U.sun_crest.day}-${U.galactic_tone}`, color: U.sun_crest.color }];
+    return [R, { day: `${U.sun_crest.day}-${U.galactic_tone}`, color: U.sun_crest.color }];
   })), { modern: f, ancient: b } = s, A = `${f.month}-${f.day}`, m = { title: { head: "Tzolkin", body: [L("\u7D50\u679C")] }, data: [{ head: "KIN", body: [L(_)] }, { head: "SC", body: [B(c.sun_crest.org)] }, { head: "WS", body: [B(c.wave_spell.org)] }, { head: "\u9280\u6CB3\u306E\u97F3", body: [L(`\u97F3 ${c.galactic_tone}`)] }, { head: "5\u3064\u306E\u57CE", body: [{ day: kt[c.castle], color: c.castle }] }] }, D = { title: { head: "KIN", body: [L("\u7D50\u679C")] }, data: [{ head: "SC\u53CD\u5BFE", body: [B(c.sun_crest.reverse)] }, { head: "SC\u985E\u4F3C", body: [B(c.sun_crest.similar)] }, { head: "SC\u795E\u79D8", body: [B(c.sun_crest.mystery)] }, { head: "WS\u53CD\u5BFE", body: [B(c.wave_spell.reverse)] }, { head: "WS\u985E\u4F3C", body: [B(c.wave_spell.similar)] }, { head: "WS\u795E\u79D8", body: [B(c.wave_spell.mystery)] }, { head: "\u30AC\u30A4\u30C9", body: [B(c.guide)] }, { head: "\u9006\u30AC\u30A4\u30C9", body: [B(c.rev_guide)] }, { head: "\u93E1KIN", body: [L(T)] }, { head: "\u93E1SC", body: [B(l.sun_crest)] }, { head: "\u93E1WS", body: [B(l.wave_spell)] }] }, w = { title: { head: "", body: [L("\u751F\u547D\u6A39\u6CD5"), o, o] }, data: [{ head: "", body: [o, d, o] }, { head: "", body: [g, h, v] }, { head: "", body: [o, E, o] }] }, S = { title: { head: "\u4ED6\u306E\u66A6", body: [L("\u65E5\u4ED8")] }, data: [{ head: "Haab", body: [L(A)] }] }, $ = { title: { head: "\u8D77\u627F\u8EE2\u7D50", body: [L("SC")] }, data: [{ head: "\u8D77", body: [B(u.introduction)] }, { head: "\u627F", body: [B(u.development)] }, { head: "\u8EE2", body: [B(u.twist)] }, { head: "\u7D50", body: [B(u.conclusion)] }] }, z = { title: { head: `\u897F\u66A6
-(\u5E74\u9F62)`, body: [L("SC"), L("WS"), L("\u9280\u6CB3\u306E\u97F3")] }, data: p.timeline.map((P, V, U) => {
+(\u5E74\u9F62)`, body: [L("SC"), L("WS"), L("\u9280\u6CB3\u306E\u97F3")] }, data: p.timeline.map((R, V, U) => {
     const re = U.length - 1, se = t.year + V, ce = `${se}
-( ${V} )`, ue = [B(P.sun_crest), B(P.wave_spell), L(`\u97F3 ${P.galactic_tone + 1}`)], fe = se % re === (/* @__PURE__ */ new Date()).getFullYear() % re;
+( ${V} )`, ue = [B(R.sun_crest), B(R.wave_spell), L(`\u97F3 ${R.galactic_tone + 1}`)], fe = se % re === (/* @__PURE__ */ new Date()).getFullYear() % re;
     return { head: ce, body: ue, emphasis: fe };
-  }) }, N = { title: { head: "\u897F\u66A6", body: [L("\u5468\u671F")] }, data: [...Pt(t, n)] };
+  }) }, N = { title: { head: "\u897F\u66A6", body: [L("\u5468\u671F")] }, data: [...Rt(t, n)] };
   return { tzolkin: m, compare: D, treeOfLife: w, other: S, story: $, timeline: z, periodicTable: N };
 }, je = (e) => {
   const { num: t, is_abs_exp: n, is_black: r, is_polar: s } = e;
   return `${t}${n ? "(\u7D76\u5BFE\u62E1\u5F35KIN)" : ""}${r ? "(\u9ED2KIN)" : ""}${s ? "(\u6975\u6027KIN)" : ""}`;
 }, L = (e) => ({ day: e }), B = (e) => ({ day: Mt[e.day], color: e.color }), nt = (e, t) => e.setDate(e.getDate() + t), rt = (e) => {
   const { year: t, month: n, day: r } = H(e);
-  return X(t, 2) === 29 && (n === 2 && r === 29 || n === 3 && r === 1);
+  return J(t, 2) === 29 && (n === 2 && r === 29 || n === 3 && r === 1);
 }, Ft = (e, t) => {
   const r = ke.getTime(), s = [];
   for (let o = 0; o < t; o++) {
@@ -652,7 +652,7 @@ ${g}_3_1`, body: [L(`-${o + 1} \u5468\u671F`)] };
     }
   }
   return s;
-}, Rt = (e, t) => {
+}, Pt = (e, t) => {
   const r = Me.getTime(), s = [];
   for (let o = 0; o < t; o++) {
     const { year: a, month: i, day: c } = H(e), l = new Date(1970, i - 1, c, 0, 0, 0, 0);
@@ -669,12 +669,12 @@ ${g}_3_1`, body: [L(`${o + 1} \u5468\u671F`)] };
     }
   }
   return s;
-}, Pt = (e, t) => {
+}, Rt = (e, t) => {
   const { year: n, month: r, day: s } = e, o = new Date(Se);
   o.setFullYear(n, r - 1, s);
   const a = new Date(Se);
   a.setFullYear(n, r - 1, s);
-  const i = [], c = Ft(o, t), l = Rt(a, t);
+  const i = [], c = Ft(o, t), l = Pt(a, t);
   return i.push(...c.reverse()), i.push({ head: `${n}_${r}_${s}`, body: [L("\u8A95\u751F\u65E5")], emphasis: true }), i.push(...l), i;
 };
 var Vt = q("<fieldset><legend>\u8A95\u751F\u65E5\u5165\u529B\u6B04</legend><label><input type=number name=year maxlength=4 required>\u5E74</label><label><input type=number name=month maxlength=2 required>\u6708</label><label><input type=number name=day maxlength=2 required>\u65E5");
@@ -689,21 +689,21 @@ const Wt = (e) => {
     const m = d.shiftKey, D = () => {
       if (h === "ArrowUp") {
         d.preventDefault();
-        const $ = X(t() + 1, n());
+        const $ = J(t() + 1, n());
         r() > $ && a($), s(t() + 1);
       } else if (h === "ArrowDown") {
         d.preventDefault();
-        const $ = X(t() - 1, n());
+        const $ = J(t() - 1, n());
         r() > $ && a($), s(t() - 1);
       } else !m && (h === "Enter" || h === " ") && (d.preventDefault(), c.focus());
     }, w = () => {
       if (h === "ArrowUp") {
         d.preventDefault();
-        const $ = X(t(), n() + 1);
+        const $ = J(t(), n() + 1);
         r() > $ && a($), o(n() + 1);
       } else if (h === "ArrowDown") {
         d.preventDefault();
-        const $ = X(t(), n() - 1);
+        const $ = J(t(), n() - 1);
         r() > $ && a($), o(n() - 1);
       } else (h === "Enter" || h === " ") && (d.preventDefault(), (m ? i : l).focus());
     }, S = () => {
@@ -731,7 +731,7 @@ const Wt = (e) => {
     }, A = () => {
       o(me(h, 1, 12)), n() >= 2 && l.focus();
     }, m = () => {
-      const D = X(t(), n());
+      const D = J(t(), n());
       a(me(h, 1, D));
     };
     switch (f) {
@@ -751,7 +751,7 @@ const Wt = (e) => {
     }, A = () => {
       Number.isNaN(h) || h === 0 ? o((/* @__PURE__ */ new Date()).getMonth() + 1) : h > 12 ? o(12) : h < 1 && o(1);
     }, m = () => {
-      const D = X(t(), n());
+      const D = J(t(), n());
       Number.isNaN(h) || h === 0 ? a((/* @__PURE__ */ new Date()).getDate()) : h > D ? a(D) : h < 1 && a(1);
     };
     switch (f) {
@@ -777,14 +777,14 @@ const Wt = (e) => {
     typeof $ == "function" ? ye($, m) : c = m, w.addEventListener("focus", _), w.addEventListener("blur", p), w.$$input = u, w.$$keydown = y;
     var z = l;
     return typeof z == "function" ? ye(z, w) : l = w, Y((N) => {
-      var P = T(), V = g(), U = v(), re = E(), se = v(), ce = E(), ue = v(), fe = E();
-      return P !== N.e && x(d, N.e = P), V !== N.t && x(h, N.t = V), U !== N.a && x(f, N.a = U), re !== N.o && x(b, N.o = re), se !== N.i && x(A, N.i = se), ce !== N.n && x(m, N.n = ce), ue !== N.s && x(D, N.s = ue), fe !== N.h && x(w, N.h = fe), N;
+      var R = T(), V = g(), U = v(), re = E(), se = v(), ce = E(), ue = v(), fe = E();
+      return R !== N.e && x(d, N.e = R), V !== N.t && x(h, N.t = V), U !== N.a && x(f, N.a = U), re !== N.o && x(b, N.o = re), se !== N.i && x(A, N.i = se), ce !== N.n && x(m, N.n = ce), ue !== N.s && x(D, N.s = ue), fe !== N.h && x(w, N.h = fe), N;
     }, { e: void 0, t: void 0, a: void 0, o: void 0, i: void 0, n: void 0, s: void 0, h: void 0 }), Y(() => b.value = t()), Y(() => m.value = n()), Y(() => w.value = r()), d;
   })();
 };
 vt(["keydown", "input"]);
 var jt = q("<table><thead><tr></tr></thead><tbody>"), Ue = q("<th>"), Ut = q("<tr>"), Ke = q("<td>");
-const G = (e) => {
+const Z = (e) => {
   const t = te(() => {
     var _a;
     return (_a = e.mayalculatorData) == null ? void 0 : _a.title.head;
@@ -815,12 +815,12 @@ const G = (e) => {
         var b = Ue();
         return M(b, t), Y(() => x(b, u({ dataType: s() }))), b;
       })();
-    })(), null), M(E, R(he, { get each() {
+    })(), null), M(E, P(he, { get each() {
       return n();
     }, children: (f) => (() => {
       var b = Ue();
       return M(b, () => f.day), Y(() => x(b, y())), b;
-    })() }), null), M(d, R(he, { get each() {
+    })() }), null), M(d, P(he, { get each() {
       return r();
     }, children: (f) => (() => {
       var b = Ut();
@@ -830,7 +830,7 @@ const G = (e) => {
           var m = Ke();
           return M(m, () => f.head), Y(() => x(m, u())), m;
         })();
-      })(), null), M(b, R(he, { get each() {
+      })(), null), M(b, P(he, { get each() {
         return f.body;
       }, children: (A) => (() => {
         var m = Ke();
@@ -855,30 +855,30 @@ const Ht = (e) => {
   }), s = O(["relative", "after:absolute", "after:content-['']", "after:bottom-0", "after:left-0", "after:w-full", "after:h-8", "after:bg-gradient-to-t", "after:from-neutral-900", "after:via-neutral-900/70", "after:via-50%", "after:to-transparent", "after:to-[2rem]", "after:pointer-events-none"], { variants: { index: { 0: [""], 1: ["hidden", "md:block"], 2: ["hidden", "lg:block"], 3: ["hidden", "xl:block"] } } }), o = O(["pb-8", "size-full", "rounded", "overflow-y-auto", "scrollbar-none"]), a = O(["bg-neutral-800", "rounded", "divide-y", "divide-neutral-600"]), i = O(["p-2"]), c = O(["bg-neutral-800", "sticky", "top-0", "z-10", i()]);
   return (() => {
     var l = Kt(), y = l.firstChild, u = y.firstChild, p = u.firstChild, _ = p.nextSibling, T = _.nextSibling, g = T.nextSibling, v = g.nextSibling, E = v.nextSibling, d = E.nextSibling, h = d.nextSibling;
-    return M(p, R(Wt, { birthdate: t, setBirthdate: n })), M(_, R(G, { get mayalculatorData() {
+    return M(p, P(Wt, { birthdate: t, setBirthdate: n })), M(_, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.tzolkin;
-    } })), M(T, R(G, { get mayalculatorData() {
+    } })), M(T, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.compare;
-    } })), M(g, R(G, { get mayalculatorData() {
+    } })), M(g, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.treeOfLife;
-    } })), M(v, R(G, { get mayalculatorData() {
+    } })), M(v, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.other;
-    } })), M(E, R(G, { get mayalculatorData() {
+    } })), M(E, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.story;
-    } })), M(d, R(G, { get mayalculatorData() {
+    } })), M(d, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.timeline;
-    } })), M(h, R(G, { get mayalculatorData() {
+    } })), M(h, P(Z, { get mayalculatorData() {
       var _a;
       return (_a = r()) == null ? void 0 : _a.periodicTable;
     }, isZebla: true })), Y((f) => {
-      var b = s({ index: e.index }), A = o(), m = a(), D = c(), w = i(), S = i(), $ = i(), z = i(), N = i(), P = i(), V = i();
-      return b !== f.e && x(l, f.e = b), A !== f.t && x(y, f.t = A), m !== f.a && x(u, f.a = m), D !== f.o && x(p, f.o = D), w !== f.i && x(_, f.i = w), S !== f.n && x(T, f.n = S), $ !== f.s && x(g, f.s = $), z !== f.h && x(v, f.h = z), N !== f.r && x(E, f.r = N), P !== f.d && x(d, f.d = P), V !== f.l && x(h, f.l = V), f;
+      var b = s({ index: e.index }), A = o(), m = a(), D = c(), w = i(), S = i(), $ = i(), z = i(), N = i(), R = i(), V = i();
+      return b !== f.e && x(l, f.e = b), A !== f.t && x(y, f.t = A), m !== f.a && x(u, f.a = m), D !== f.o && x(p, f.o = D), w !== f.i && x(_, f.i = w), S !== f.n && x(T, f.n = S), $ !== f.s && x(g, f.s = $), z !== f.h && x(v, f.h = z), N !== f.r && x(E, f.r = N), R !== f.d && x(d, f.d = R), V !== f.l && x(h, f.l = V), f;
     }, { e: void 0, t: void 0, a: void 0, o: void 0, i: void 0, n: void 0, s: void 0, h: void 0, r: void 0, d: void 0, l: void 0 }), l;
   })();
 };
@@ -887,28 +887,28 @@ const zt = () => {
   const e = O(["flex", "size-full", "px-8", "pt-8", "gap-4"]);
   return (() => {
     var t = qt();
-    return M(t, R(he, { get each() {
+    return M(t, P(he, { get each() {
       return Array(4).fill(0);
-    }, children: (n, r) => R(Ht, { get index() {
+    }, children: (n, r) => P(Ht, { get index() {
       return r();
     } }) })), Y(() => x(t, e())), t;
   })();
 };
-var Gt = q("<main>");
-const Zt = () => {
+var Zt = q("<main>");
+const Gt = () => {
   const e = O(["fixed", "size-full", "bg-neutral-900", "text-neutral-200"]);
   return (() => {
-    var t = Gt();
-    return M(t, R(zt, {})), Y(() => x(t, e())), t;
+    var t = Zt();
+    return M(t, P(zt, {})), Y(() => x(t, e())), t;
   })();
-}, Xt = async () => {
+}, Jt = async () => {
   try {
     await Be();
     const e = document.getElementById("root");
     if (!e) throw new Error("Root element not found");
-    pt(() => R(Zt, {}), e);
+    pt(() => P(Gt, {}), e);
   } catch (e) {
     console.error(e);
   }
 };
-Xt();
+Jt();
