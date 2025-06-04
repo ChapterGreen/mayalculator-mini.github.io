@@ -1,4 +1,4 @@
-アプリケーションのリンク: [mayalculator-mini](https://chaptergreen.github.io/mayalculator-mini.github.io/){:target="_blank"}
+アプリケーションのリンク: ![mayalculator-mini](https://chaptergreen.github.io/mayalculator-mini.github.io/)
 
 # 使い方
 
