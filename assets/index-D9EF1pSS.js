@@ -871,7 +871,7 @@ const Ut = (e) => {
     }, { e: void 0, t: void 0, a: void 0, o: void 0, i: void 0, n: void 0 }), v;
   })();
 };
-var Kt = R("<table><caption>\u751F\u547D\u6A39\u6CD5</caption><thead><tr><th scope=col colspan=3></th></tr></thead><tbody>"), zt = R("<tr>"), qt = R("<td>");
+var Kt = R("<table><caption>\u53E4\u5178\u30DE\u30E4\u66A6\u8868</caption><thead><tr><th scope=col colspan=3></th></tr></thead><tbody>"), zt = R("<tr>"), qt = R("<td>");
 const Gt = (e) => {
   const t = F(() => {
     var _a;
